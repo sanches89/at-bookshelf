@@ -20,8 +20,3 @@ export const Primary = Template.bind({})
 Primary.args = {
   children: 'Primary',
 }
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  children: 'Secondary',
-}
