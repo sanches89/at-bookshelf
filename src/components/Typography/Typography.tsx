@@ -17,7 +17,7 @@ export function Typography(props: TypographyProps): React.ReactElement {
     cardHeader: 'h2',
     cardAuthor: 'span',
     paragraph: 'p',
-  }[variant] as any
+  }[variant] as keyof JSX.IntrinsicElements
 
   return (
     <S.Container as={as} variant={variant}>

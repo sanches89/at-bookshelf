@@ -4,6 +4,7 @@ import * as S from './Card.styles'
 
 export interface CardProps {
   children: React.ReactNode
+  as?: keyof JSX.IntrinsicElements
 }
 
 export function Card(props: CardProps): React.ReactElement {
