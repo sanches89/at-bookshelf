@@ -6,6 +6,9 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
+  margin-top: -6px;
+  margin-right: -6px;
+
   border: none;
   border-radius: 100%;
 
