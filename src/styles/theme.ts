@@ -8,5 +8,8 @@ export const theme = {
     primary: '#199C7D',
     primaryText: '#FFFFFF',
     buttonIcon: '#C4C4C4',
+    inputBorder: '#000000',
+    inputBorderError: 'red',
+    inputBackground: '#FFFFFF',
   },
 }
