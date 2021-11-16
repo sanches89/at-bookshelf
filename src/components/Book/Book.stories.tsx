@@ -18,7 +18,6 @@ const Template: ComponentStory<typeof Book> = args => <Book {...args} />
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Standard = Template.bind({})
 Standard.args = {
-  bookId: '1',
   imageUrl: 'https://picsum.photos/125/200',
   title: 'Atomic Habits',
   author: 'James Clear',

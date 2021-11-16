@@ -36,6 +36,30 @@ export function Home(): React.ReactElement {
     fetchBooks()
   }, [])
 
+  const handleDeleteBook = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    bookId: string,
+  ) => {
+    e.preventDefault()
+
+    setLoading(true)
+
+    try {
+      const res = await fetch(
+        `https://us-central1-all-turtles-interview.cloudfunctions.net/books/${bookId}`,
+        {method: 'delete'},
+      )
+
+      const data = await res.json()
+
+      setBooks(data)
+    } catch (e) {
+      setError(e as Error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <S.Container>
       <S.Content>
@@ -50,7 +74,12 @@ export function Home(): React.ReactElement {
         <S.BookList>
           {books.map(book => (
             <S.BookItem key={book.id}>
-              <Book bookId={book.id} {...book} />
+              <Book
+                {...book}
+                onDelete={e => {
+                  handleDeleteBook(e, book.id)
+                }}
+              />
             </S.BookItem>
           ))}
         </S.BookList>
