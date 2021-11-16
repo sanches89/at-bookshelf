@@ -8,11 +8,6 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 62.5%;
       background-color: ${theme.color.background};
 
-      * {
-        margin: 0;
-        padding: 0;
-      }
-
       body {
         min-height: 100vh;
         min-width: 100vw;
@@ -22,6 +17,15 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Ubuntu', sans-serif;
         font-size: 1.4rem;
       }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      cursor: pointer;
     }
   `}
 `

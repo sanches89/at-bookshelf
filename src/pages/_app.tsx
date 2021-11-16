@@ -31,11 +31,8 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
 
         <meta name="viewport" content={viewport} />
 
-        <meta name="description" content="Create Next App - TypeScript" />
-        <meta
-          name="keywords"
-          content="Next.js, Create Next App, CNA, TypeScript, TS"
-        />
+        <meta name="description" content="All Turtles - Bookshelf" />
+        <meta name="keywords" content="All Turtles, Bookshelf" />
 
         {/* https://realfavicongenerator.net/ */}
         <link
@@ -60,7 +57,7 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
 
-        <title>CNA | TypeScript</title>
+        <title>All Turtles - Bookshelf</title>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />

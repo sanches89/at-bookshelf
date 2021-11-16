@@ -8,14 +8,14 @@ import * as S from './Book.styles'
 
 export interface BookProps {
   bookId: string
-  imgUrl: string
+  imageUrl: string
   title: string
   author: string
   description: string
 }
 
 export function Book(props: BookProps): React.ReactElement {
-  const {bookId, imgUrl, title, author, description} = props
+  const {bookId, imageUrl, title, author, description, ...otherProps} = props
 
   const handleDeleteBook = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -26,9 +26,9 @@ export function Book(props: BookProps): React.ReactElement {
   }
 
   return (
-    <Card as="article">
+    <Card as="article" {...otherProps}>
       <S.Container>
-        <S.Image src={imgUrl} />
+        <S.Image src={imageUrl} />
         <S.Content>
           <S.Header>
             <Typography variant="cardHeader">{title}</Typography>
