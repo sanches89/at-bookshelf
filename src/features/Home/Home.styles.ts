@@ -12,6 +12,7 @@ export const Content = styled.div`
 
   margin: auto;
 `
+
 export const BookItem = styled.div``
 
 export const BookList = styled.article`
