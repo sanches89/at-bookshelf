@@ -5,6 +5,7 @@ import Head from 'next/head'
 
 import {ThemeProvider} from 'styled-components'
 
+import {BooksProvider} from '@/contexts/BooksContext'
 import {GlobalStyle} from '@/styles/GlobalStyle'
 import {theme} from '@/styles/theme'
 
@@ -61,7 +62,9 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <BooksProvider>
+          <Component {...pageProps} />
+        </BooksProvider>
       </ThemeProvider>
     </>
   )

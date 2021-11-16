@@ -6,14 +6,14 @@ import {Book} from '@/components/Book'
 import {Button} from '@/components/Button'
 import {PageHeader} from '@/components/PageHeader'
 import {Typography} from '@/components/Typography'
-import {Book as IBook} from '@/types/book'
+import {useBooks} from '@/contexts/BooksContext'
 
 import * as S from './Home.styles'
 
 export function Home(): React.ReactElement {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error>()
-  const [books, setBooks] = useState<IBook[]>([])
+  const [books, setBooks] = useBooks()
 
   useEffect(() => {
     async function fetchBooks() {
