@@ -12,3 +12,15 @@ export const Content = styled.div`
 
   margin: auto;
 `
+
+export const FormField = styled.div``
+
+export const Form = styled.form`
+  ${FormField} + ${FormField} {
+    margin-top: 52px;
+  }
+`
+
+export const FormActions = styled.div`
+  margin-top: 52px;
+`

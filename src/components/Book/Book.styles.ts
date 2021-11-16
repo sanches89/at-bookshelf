@@ -9,6 +9,8 @@ export const Content = styled.section`
 
   flex-direction: column;
 
+  flex-grow: 1;
+
   margin-left: 16px;
 `
 

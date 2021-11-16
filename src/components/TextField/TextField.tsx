@@ -1,8 +1,8 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, InputHTMLAttributes} from 'react'
 
 import * as S from './TextField.styles'
 
-export interface TextFieldProps {
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: React.ReactNode
   textArea?: boolean
   error?: boolean
