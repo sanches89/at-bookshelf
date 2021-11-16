@@ -9,14 +9,15 @@ export type Icon = 'trash' | 'times'
 export interface ButtonIconProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: Icon
+  size?: number
 }
 
 export function ButtonIcon(props: ButtonIconProps): React.ReactElement {
-  const {icon, ...otherProps} = props
+  const {icon, size = 21, ...otherProps} = props
 
   return (
     <S.Container {...otherProps}>
-      {icon === 'trash' ? <Trash /> : <Times />}
+      {icon === 'trash' ? <Trash size={size} /> : <Times size={size} />}
     </S.Container>
   )
 }

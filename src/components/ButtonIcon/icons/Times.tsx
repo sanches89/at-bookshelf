@@ -1,6 +1,12 @@
 import React from 'react'
 
-export function Times() {
+export interface TimesProps {
+  size: number
+}
+
+export function Times(props: TimesProps) {
+  const {size} = props
+
   return (
     <svg
       aria-hidden="true"
@@ -10,7 +16,7 @@ export function Times() {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 352 512"
-      style={{height: 21, width: 21}}
+      style={{height: size, width: size}}
     >
       <path
         fill="currentColor"
