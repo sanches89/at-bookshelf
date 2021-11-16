@@ -5,6 +5,7 @@ import Head from 'next/head'
 
 import {ThemeProvider} from 'styled-components'
 
+import {GlobalStyle} from '@/styles/GlobalStyle'
 import {theme} from '@/styles/theme'
 
 /**
@@ -62,6 +63,7 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
         <title>CNA | TypeScript</title>
       </Head>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
