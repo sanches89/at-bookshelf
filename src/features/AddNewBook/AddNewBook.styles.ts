@@ -19,6 +19,10 @@ export const Form = styled.form`
   ${FormField} + ${FormField} {
     margin-top: 52px;
   }
+
+  textarea {
+    resize: none;
+  }
 `
 
 export const FormActions = styled.div`
