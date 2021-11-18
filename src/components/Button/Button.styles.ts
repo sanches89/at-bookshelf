@@ -13,5 +13,11 @@ export const Container = styled.button`
     font-weight: 700;
 
     cursor: pointer;
+
+    &:disabled {
+      background-color: ${theme.color.buttonIcon};
+
+      cursor: not-allowed;
+    }
   `}
 `
