@@ -1,6 +1,5 @@
 import React from 'react'
 
-import {ButtonIcon} from '@/components/ButtonIcon'
 import {Card} from '@/components/Card'
 import {Typography} from '@/components/Typography'
 
@@ -33,7 +32,7 @@ export function Book(props: BookProps): React.ReactElement {
         <S.Content>
           <S.Header>
             <Typography variant="cardHeader">{title}</Typography>
-            <ButtonIcon icon="trash" onClick={onDelete} />
+            <S.ButtonDelete icon="trash" onClick={onDelete} />
           </S.Header>
           <S.Author>
             <Typography variant="cardAuthor">{author}</Typography>

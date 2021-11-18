@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import {ButtonIcon} from '@/components/ButtonIcon'
+
 export const Container = styled.div`
   display: flex;
 `
@@ -19,6 +21,14 @@ export const Header = styled.header`
 
   align-items: flex-start;
   justify-content: space-between;
+`
+
+export const ButtonDelete = styled(ButtonIcon)`
+  :hover {
+    color: ${p => p.theme.color.error};
+  }
+
+  transition: color 0.2s;
 `
 
 export const Author = styled.div`
