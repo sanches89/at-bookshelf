@@ -1,24 +1,37 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 export const Container = styled.div``
 
 export const Label = styled.label`
-  display: block;
+  ${({theme}) => css`
+    display: flex;
 
-  margin-bottom: 9px;
+    align-items: baseline;
+    justify-content: space-between;
 
-  font-weight: 700;
+    margin-bottom: 9px;
+
+    font-weight: 700;
+
+    & > span.-error {
+      color: ${theme.color.error};
+    }
+  `}
 `
 
-export const Input = styled.input<{error?: boolean}>`
-  width: 100%;
+export const Input = styled.input`
+  ${({theme}) => css`
+    width: 100%;
 
-  border: 1px solid
-    ${p =>
-      p.error ? p.theme.color.inputBorderError : p.theme.color.inputBorder};
-  border-radius: 4px;
+    border: 1px solid ${theme.color.inputBorder};
+    border-radius: 4px;
 
-  padding: 9px 16px;
+    padding: 9px 16px;
 
-  background-color: ${p => p.theme.color.inputBackground};
+    background-color: ${theme.color.inputBackground};
+
+    &.-error {
+      border-color: ${theme.color.error};
+    }
+  `}
 `
