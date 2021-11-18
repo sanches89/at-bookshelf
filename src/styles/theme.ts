@@ -9,7 +9,7 @@ export const theme = {
     primaryText: '#FFFFFF',
     buttonIcon: '#C4C4C4',
     inputBorder: '#000000',
-    inputBorderError: 'red',
     inputBackground: '#FFFFFF',
+    error: '#F03D3A',
   },
 }

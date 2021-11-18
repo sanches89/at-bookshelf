@@ -27,5 +27,12 @@ export const GlobalStyle = createGlobalStyle`
     a {
       cursor: pointer;
     }
+
+    input,
+    textarea {
+      &:focus-visible {
+        outline: none;
+      }
+    }
   `}
 `
