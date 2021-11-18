@@ -5,7 +5,6 @@ import {ThemeProvider} from 'styled-components'
 
 import {GlobalStyle} from '../src/styles/GlobalStyle'
 import {theme} from '../src/styles/theme'
-import {BookProvider} from '../src/contexts/BooksContext'
 
 const StylesDecorator = storyFn => (
   <ThemeProvider theme={theme}>

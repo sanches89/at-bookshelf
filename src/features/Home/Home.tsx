@@ -1,40 +1,28 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 import Link from 'next/link'
+
+import {useQuery, useMutation, useQueryClient} from 'react-query'
 
 import {Book} from '@/components/Book'
 import {Button} from '@/components/Button'
 import {PageHeader} from '@/components/PageHeader'
 import {Typography} from '@/components/Typography'
-import {useBooks} from '@/contexts/BooksContext'
+import {deleteBook} from '@/services/books/deleteBook'
+import {getBooks} from '@/services/books/getBooks'
+import {Book as IBook} from '@/types/book'
 
 import * as S from './Home.styles'
 
 export function Home(): React.ReactElement {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error>()
-  const [books, setBooks] = useBooks()
+  const queryClient = useQueryClient()
 
-  useEffect(() => {
-    async function fetchBooks() {
-      setLoading(true)
-
-      try {
-        const res = await fetch(
-          'https://us-central1-all-turtles-interview.cloudfunctions.net/books',
-        )
-        const data = await res.json()
-
-        setBooks(data)
-      } catch (e) {
-        setError(e as Error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchBooks()
-  }, [])
+  const queryGetBooks = useQuery<IBook[], Error>('books', getBooks)
+  const mutationDeleteBook = useMutation('books', deleteBook, {
+    onSuccess: result => {
+      queryClient.setQueryData('books', result)
+    },
+  })
 
   const handleDeleteBook = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -42,22 +30,7 @@ export function Home(): React.ReactElement {
   ) => {
     e.preventDefault()
 
-    setLoading(true)
-
-    try {
-      const res = await fetch(
-        `https://us-central1-all-turtles-interview.cloudfunctions.net/books/${bookId}`,
-        {method: 'delete'},
-      )
-
-      const data = await res.json()
-
-      setBooks(data)
-    } catch (e) {
-      setError(e as Error)
-    } finally {
-      setLoading(false)
-    }
+    mutationDeleteBook.mutate(bookId)
   }
 
   return (
@@ -72,7 +45,7 @@ export function Home(): React.ReactElement {
           </Link>
         </PageHeader>
         <S.BookList>
-          {books.map(book => (
+          {(queryGetBooks.data ?? []).map(book => (
             <S.BookItem key={book.id}>
               <Book
                 {...book}
@@ -82,6 +55,8 @@ export function Home(): React.ReactElement {
               />
             </S.BookItem>
           ))}
+
+          {queryGetBooks.isLoading && <S.BookItem>Loading...</S.BookItem>}
         </S.BookList>
       </S.Content>
     </S.Container>

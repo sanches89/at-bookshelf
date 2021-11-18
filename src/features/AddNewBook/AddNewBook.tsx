@@ -1,24 +1,44 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import Link from 'next/link'
 import Router from 'next/router'
+
+import {useMutation, useQueryClient} from 'react-query'
 
 import {Button} from '@/components/Button'
 import {ButtonIcon} from '@/components/ButtonIcon'
 import {PageHeader} from '@/components/PageHeader'
 import {TextField} from '@/components/TextField'
 import {Typography} from '@/components/Typography'
+import {addBook} from '@/services/books/addBook'
+import {Book} from '@/types/book'
 
 import * as S from './AddNewBook.styles'
 
+function isBook(value: unknown): value is Book {
+  return (
+    typeof value === 'object' &&
+    value != null &&
+    'title' in value &&
+    'author' in value &&
+    'description' in value &&
+    'imageUrl' in value
+  )
+}
+
 export function AddNewBook(): React.ReactElement {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error>()
+  const queryClient = useQueryClient()
+
+  const mutationAddBook = useMutation('books', addBook, {
+    onSuccess: result => {
+      queryClient.setQueryData('books', result)
+
+      Router.push('/')
+    },
+  })
 
   const handleAddBook = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    setLoading(true)
 
     const form = e.currentTarget
     const formData = Array.from(new FormData(form).entries()).reduce(
@@ -29,24 +49,11 @@ export function AddNewBook(): React.ReactElement {
       {} as Record<string, FormDataEntryValue>,
     )
 
-    try {
-      await fetch(
-        'https://us-central1-all-turtles-interview.cloudfunctions.net/books',
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        },
-      )
-
-      Router.push('/')
-    } catch (e) {
-      setError(e as Error)
-    } finally {
-      setLoading(false)
+    if (!isBook(formData)) {
+      return
     }
+
+    mutationAddBook.mutate(formData)
   }
 
   return (

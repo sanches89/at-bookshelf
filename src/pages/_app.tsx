@@ -5,7 +5,9 @@ import Head from 'next/head'
 
 import {ThemeProvider} from 'styled-components'
 
-import {BooksProvider} from '@/contexts/BooksContext'
+import {QueryClient, QueryClientProvider} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
+
 import {GlobalStyle} from '@/styles/GlobalStyle'
 import {theme} from '@/styles/theme'
 
@@ -24,6 +26,8 @@ const viewport = [
 ].join(', ')
 
 function MyApp({Component, pageProps}: AppProps): React.ReactElement {
+  const [queryClient] = React.useState(() => new QueryClient())
+
   return (
     <>
       <Head>
@@ -62,9 +66,10 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <BooksProvider>
+        <QueryClientProvider client={queryClient}>
           <Component {...pageProps} />
-        </BooksProvider>
+          <ReactQueryDevtools />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   )
