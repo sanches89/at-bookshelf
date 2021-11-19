@@ -6,6 +6,7 @@ import {useQuery, useMutation, useQueryClient} from 'react-query'
 
 import {Book} from '@/components/Book'
 import {Button} from '@/components/Button'
+import {Layout} from '@/components/Layout'
 import {PageHeader} from '@/components/PageHeader'
 import {Typography} from '@/components/Typography'
 import {deleteBook} from '@/services/books/deleteBook'
@@ -13,7 +14,6 @@ import {getBooks} from '@/services/books/getBooks'
 import {Book as IBook} from '@/types/book'
 
 import * as S from './Home.styles'
-import {Layout} from '@/components/Layout'
 
 export function Home(): React.ReactElement {
   const queryClient = useQueryClient()
