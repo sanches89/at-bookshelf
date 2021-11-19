@@ -13,6 +13,7 @@ import {getBooks} from '@/services/books/getBooks'
 import {Book as IBook} from '@/types/book'
 
 import * as S from './Home.styles'
+import {Layout} from '@/components/Layout'
 
 export function Home(): React.ReactElement {
   const queryClient = useQueryClient()
@@ -34,31 +35,33 @@ export function Home(): React.ReactElement {
   }
 
   return (
-    <S.Container>
-      <S.Content>
-        <PageHeader>
-          <Typography variant="pageHeader">Bookshelf</Typography>
-          <Link href="/add-a-new-book">
-            <a>
-              <Button>Add book</Button>
-            </a>
-          </Link>
-        </PageHeader>
-        <S.BookList>
-          {(queryGetBooks.data ?? []).map(book => (
-            <S.BookItem key={book.id}>
-              <Book
-                {...book}
-                onDelete={e => {
-                  handleDeleteBook(e, book.id)
-                }}
-              />
-            </S.BookItem>
-          ))}
+    <Layout>
+      <S.Container>
+        <S.Content>
+          <PageHeader>
+            <Typography variant="pageHeader">Bookshelf</Typography>
+            <Link href="/add-a-new-book">
+              <a>
+                <Button>Add book</Button>
+              </a>
+            </Link>
+          </PageHeader>
+          <S.BookList>
+            {(queryGetBooks.data ?? []).map(book => (
+              <S.BookItem key={book.id}>
+                <Book
+                  {...book}
+                  onDelete={e => {
+                    handleDeleteBook(e, book.id)
+                  }}
+                />
+              </S.BookItem>
+            ))}
 
-          {queryGetBooks.isLoading && <S.BookItem>Loading...</S.BookItem>}
-        </S.BookList>
-      </S.Content>
-    </S.Container>
+            {queryGetBooks.isLoading && <S.BookItem>Loading...</S.BookItem>}
+          </S.BookList>
+        </S.Content>
+      </S.Container>
+    </Layout>
   )
 }

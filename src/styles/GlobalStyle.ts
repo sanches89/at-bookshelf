@@ -2,7 +2,7 @@ import {createGlobalStyle, css} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   ${({theme}) => css`
-    /* @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap'); */
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
     :root {
       font-size: 62.5%;

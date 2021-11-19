@@ -9,6 +9,7 @@ import * as yup from 'yup'
 
 import {Button} from '@/components/Button'
 import {ButtonIcon} from '@/components/ButtonIcon'
+import {Layout} from '@/components/Layout'
 import {PageHeader} from '@/components/PageHeader'
 import {TextField} from '@/components/TextField'
 import {Typography} from '@/components/Typography'
@@ -53,56 +54,58 @@ export function AddNewBook(): React.ReactElement {
   }
 
   return (
-    <S.Container>
-      <S.Content>
-        <PageHeader>
-          <Typography variant="pageHeader">Add a new book</Typography>
-          <Link href="/">
-            <a>
-              <ButtonIcon icon="times" size={32} />
-            </a>
-          </Link>
-        </PageHeader>
-        <S.Form onSubmit={handleSubmit<Partial<Book>>(onSubmitHandler)}>
-          <S.FormField>
-            <TextField
-              label="Title"
-              error={errors.title}
-              errorMessage={errors.title?.message}
-              {...register('title')}
-            />
-          </S.FormField>
-          <S.FormField>
-            <TextField
-              label="Author"
-              error={errors.author}
-              errorMessage={errors.author?.message}
-              {...register('author')}
-            />
-          </S.FormField>
-          <S.FormField>
-            <TextField
-              label="Description"
-              textArea
-              error={errors.description}
-              errorMessage={errors.description?.message}
-              {...register('description')}
-            />
-          </S.FormField>
-          <S.FormField>
-            <TextField
-              label="Image URL"
-              error={errors.imageUrl}
-              errorMessage={errors.imageUrl?.message}
-              {...register('imageUrl')}
-            />
-          </S.FormField>
+    <Layout>
+      <S.Container>
+        <S.Content>
+          <PageHeader>
+            <Typography variant="pageHeader">Add a new book</Typography>
+            <Link href="/">
+              <a>
+                <ButtonIcon icon="times" size={32} />
+              </a>
+            </Link>
+          </PageHeader>
+          <S.Form onSubmit={handleSubmit<Partial<Book>>(onSubmitHandler)}>
+            <S.FormField>
+              <TextField
+                label="Title"
+                error={errors.title}
+                errorMessage={errors.title?.message}
+                {...register('title')}
+              />
+            </S.FormField>
+            <S.FormField>
+              <TextField
+                label="Author"
+                error={errors.author}
+                errorMessage={errors.author?.message}
+                {...register('author')}
+              />
+            </S.FormField>
+            <S.FormField>
+              <TextField
+                label="Description"
+                textArea
+                error={errors.description}
+                errorMessage={errors.description?.message}
+                {...register('description')}
+              />
+            </S.FormField>
+            <S.FormField>
+              <TextField
+                label="Image URL"
+                error={errors.imageUrl}
+                errorMessage={errors.imageUrl?.message}
+                {...register('imageUrl')}
+              />
+            </S.FormField>
 
-          <S.FormActions>
-            <Button disabled={mutationAddBook.isLoading}>Save</Button>
-          </S.FormActions>
-        </S.Form>
-      </S.Content>
-    </S.Container>
+            <S.FormActions>
+              <Button disabled={mutationAddBook.isLoading}>Save</Button>
+            </S.FormActions>
+          </S.Form>
+        </S.Content>
+      </S.Container>
+    </Layout>
   )
 }

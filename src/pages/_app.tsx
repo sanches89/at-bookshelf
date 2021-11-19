@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 
 import {AppProps} from 'next/app'
 import Head from 'next/head'
 
 import {ThemeProvider} from 'styled-components'
 
+import {AnimatePresence} from 'framer-motion'
 import {QueryClient, QueryClientProvider} from 'react-query'
 import {ReactQueryDevtools} from 'react-query/devtools'
 
@@ -26,7 +27,11 @@ const viewport = [
 ].join(', ')
 
 function MyApp({Component, pageProps}: AppProps): React.ReactElement {
-  const [queryClient] = React.useState(() => new QueryClient())
+  const [queryClient] = useState(() => new QueryClient())
+
+  const handleExitComplete = useCallback(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>
@@ -67,7 +72,13 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <AnimatePresence
+            exitBeforeEnter
+            initial={false}
+            onExitComplete={handleExitComplete}
+          >
+            <Component {...pageProps} />
+          </AnimatePresence>
           <ReactQueryDevtools />
         </QueryClientProvider>
       </ThemeProvider>
